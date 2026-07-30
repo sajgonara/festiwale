@@ -1,6 +1,8 @@
 # 🎪 Festiwale w Polsce
 
-Mapa + kalendarz festiwali w Polsce z filtrem zakresu dat (domyślnie cały rok) i oznaczeniem
+**Live:** https://sajgonara.github.io/festiwale/
+
+Mapa + kalendarz festiwali w Polsce z filtrem zakresu dat (domyślnie 365 dni od dziś) i oznaczeniem
 wydarzeń z wolnym wstępem. Statyczna strona: Leaflet + CARTO dark, vanilla JS, zero zależności poza mapą.
 
 ## Funkcje
