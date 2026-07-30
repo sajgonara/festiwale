@@ -25,7 +25,11 @@ select,input[type=text],input[type=date]{background:var(--panel2);color:var(--te
 input[type=text]{width:180px}
 input[type=date]{color-scheme:dark;width:145px}
 select:focus,input:focus{border-color:var(--accent)}
-#dates{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:9px}
+#dates{display:none;gap:8px;align-items:center;flex-wrap:wrap;margin-top:9px;flex-basis:100%}
+body.adv-open #dates{display:flex}  /* zaawansowane: rozwijane przyciskiem ⚙️ */
+#advToggle{background:var(--panel2);border:1px solid var(--border);color:var(--muted);
+           border-radius:8px;padding:7px 10px;font-size:.85rem;cursor:pointer;font-family:inherit;white-space:nowrap}
+#advToggle:hover{border-color:var(--accent);color:var(--text)}
 #dates .lbl{font-size:.78rem;color:var(--muted)}
 .presets{display:flex;gap:5px;flex-wrap:wrap}
 .preset{background:var(--panel2);border:1px solid var(--border);color:var(--muted);border-radius:20px;padding:5px 11px;font-size:.75rem;cursor:pointer;font-family:inherit}
@@ -40,7 +44,7 @@ select:focus,input:focus{border-color:var(--accent)}
 .card:hover,.card.active{border-color:var(--accent);border-left-color:var(--cat,var(--accent))}
 .card .top{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
 .card .name{font-weight:600;font-size:.95rem}
-.card .city{color:var(--muted);font-size:.8rem;white-space:nowrap}
+.card .city{color:var(--accent);font-size:.85rem;font-weight:600;white-space:nowrap}
 .card .when{margin-top:5px;font-size:.82rem;color:var(--text)}
 .card .when b{color:var(--accent)}
 .card .chips{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap}
@@ -66,12 +70,31 @@ select:focus,input:focus{border-color:var(--accent)}
 .leaflet-container{background:#0a0d11}
 footer{padding:6px 18px;background:var(--panel);border-top:1px solid var(--border);font-size:.7rem;color:var(--muted)}
 footer a{color:var(--accent)}
+#tabs{display:none}
+#applyFilters{display:none}
+#filters{display:contents}
 @media(max-width:900px){
+  header{padding:10px 12px}
+  header .sub{display:none}
   #controls{margin-left:0;width:100%}
-  #main{flex-direction:column}
-  #list{width:100%;min-width:0;height:48%;order:2;border-right:none;border-top:1px solid var(--border)}
-  #map{height:52%;order:1}
-  input[type=text]{width:100%}
+  input[type=text]{width:100%;font-size:1rem}
+  /* mobilne widoki: lista albo mapa na całą wysokość, przełączane dolnym paskiem */
+  #main{position:relative}
+  #list,#map{position:absolute;inset:0;width:100%;height:100%;min-width:0;border:0;display:none}
+  #main.view-list #list{display:block}
+  #main.view-map #map{display:block}
+  /* filtry + terminy jako rozwijany panel (zakładka „Filtry”) */
+  #filters{display:none;flex-direction:column;align-items:stretch;gap:8px;width:100%;
+           background:var(--panel);border-bottom:1px solid var(--border);padding:10px 12px}
+  #filters select,#filters input[type=date],#filters #advToggle{width:100%}
+  body.filters-open #filters{display:flex}
+  #applyFilters{display:block;padding:10px;border:0;border-radius:8px;
+                background:var(--accent);color:#1a1206;font-weight:700;font-size:.95rem}
+  footer{display:none}
+  #tabs{display:flex;background:var(--panel);border-top:1px solid var(--border)}
+  #tabs button{flex:1;padding:12px 4px;background:none;border:0;border-top:2px solid transparent;
+               color:var(--muted);font-size:.9rem;cursor:pointer;font-family:inherit}
+  #tabs button.on{color:var(--accent);font-weight:700;border-top-color:var(--accent)}
 }
 </style>
 </head>
@@ -84,30 +107,34 @@ footer a{color:var(--accent)}
     </div>
     <div id="controls">
       <input type="text" id="search" placeholder="Szukaj festiwalu lub miasta…">
-      <select id="cat"><option value="">Wszystkie kategorie</option></select>
-      <select id="cityFilter"><option value="">Wszystkie miasta</option></select>
-      <select id="sort">
-        <option value="date">📅 Chronologicznie</option>
-        <option value="price">💰 Najtańsze najpierw</option>
-        <option value="city">🏙️ Miasto A–Z</option>
-        <option value="name">🔤 Nazwa A–Z</option>
-      </select>
+      <div id="filters">
+        <select id="cat"><option value="">Wszystkie kategorie</option></select>
+        <select id="cityFilter"><option value="">Wszystkie miasta</option></select>
+        <select id="sort">
+          <option value="date">📅 Chronologicznie</option>
+          <option value="price">💰 Najtańsze najpierw</option>
+          <option value="city">🏙️ Miasto A–Z</option>
+          <option value="name">🔤 Nazwa A–Z</option>
+        </select>
+        <button id="advToggle" type="button">⚙️ Terminy i opcje ▾</button>
+        <div id="dates">
+          <span class="lbl">Termin:</span>
+          <input type="date" id="from">
+          <span class="lbl">–</span>
+          <input type="date" id="to">
+          <div class="presets">
+            <button class="preset" data-p="year">Najbliższy rok</button>
+            <button class="preset" data-p="halfyear">Pół roku</button>
+            <button class="preset" data-p="month">Najbliższy miesiąc</button>
+            <button class="preset" data-p="weekend">Ten weekend</button>
+            <button class="preset" data-p="summer">Najbliższe lato</button>
+            <button class="preset" data-p="all">Wszystko</button>
+          </div>
+          <label class="toggle"><input type="checkbox" id="freeOnly"> tylko darmowe</label>
+        </div>
+        <button id="applyFilters">✓ Pokaż wyniki</button>
+      </div>
     </div>
-  </div>
-  <div id="dates">
-    <span class="lbl">Termin:</span>
-    <input type="date" id="from">
-    <span class="lbl">–</span>
-    <input type="date" id="to">
-    <div class="presets">
-      <button class="preset" data-p="year">Najbliższy rok</button>
-      <button class="preset" data-p="halfyear">Pół roku</button>
-      <button class="preset" data-p="month">Najbliższy miesiąc</button>
-      <button class="preset" data-p="weekend">Ten weekend</button>
-      <button class="preset" data-p="summer">Najbliższe lato</button>
-      <button class="preset" data-p="all">Wszystko</button>
-    </div>
-    <label class="toggle"><input type="checkbox" id="freeOnly"> tylko darmowe</label>
   </div>
 </header>
 <div id="stats"></div>
@@ -116,6 +143,11 @@ footer a{color:var(--accent)}
   <div id="map"></div>
 </div>
 <footer><span id="updated"></span> — terminy oznaczone <span class="badge">~termin</span> są orientacyjne, potwierdź u organizatora. <a href="https://github.com/sajgonara/festiwale" target="_blank">GitHub</a></footer>
+<nav id="tabs">
+  <button data-v="list" class="on">📋 Lista</button>
+  <button data-v="map">🗺️ Mapa</button>
+  <button data-v="filters">🎛️ Filtry</button>
+</nav>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="data.js"></script>
 <script>
@@ -134,6 +166,24 @@ const markers={};
 const el=id=>document.getElementById(id);
 const listEl=el('list'), statsEl=el('stats'), fromEl=el('from'), toEl=el('to'),
       catEl=el('cat'), cityEl=el('cityFilter'), sortEl=el('sort'), searchEl=el('search'), freeEl=el('freeOnly');
+const mainEl=el('main');
+
+// mobilne widoki lista/mapa/filtry + mądre przejścia między nimi
+const isMobile=()=>window.matchMedia('(max-width:900px)').matches;
+function setView(v){
+  mainEl.className='view-'+v;
+  document.body.classList.toggle('filters-open',v==='filters');
+  document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('on',b.dataset.v===v));
+  if(v==='map') setTimeout(()=>map.invalidateSize(),60);
+}
+window.goList=i=>{setView('list');highlight(i,false);};
+document.querySelectorAll('#tabs button').forEach(b=>b.addEventListener('click',()=>setView(b.dataset.v)));
+el('applyFilters').addEventListener('click',()=>setView('list'));
+// zaawansowane filtry (terminy, presety) — zwinięte, rozwijane na żądanie
+el('advToggle').addEventListener('click',()=>{
+  const open=document.body.classList.toggle('adv-open');
+  el('advToggle').textContent=open?'⚙️ Terminy i opcje ▴':'⚙️ Terminy i opcje ▾';
+});
 
 const MONTHS=['stycznia','lutego','marca','kwietnia','maja','czerwca','lipca','sierpnia','września','października','listopada','grudnia'];
 function fmtRange(s,e){
@@ -167,7 +217,8 @@ FESTIWALE.forEach((f,i)=>{
     ${f.free?'<br>🎟️ <b style="color:#5fbf77">wstęp wolny</b>':(f.priceMin!=null||f.pricePass!=null?`<br>🎟️ od <b>${fmtPrice(f.priceMin??f.pricePass)}</b>`:'')}
     ${f.priceNote?`<br><i style="font-size:.9em">${f.priceNote}</i>`:''}
     ${f.note?`<br><span style="color:#9aa5b4;font-size:.9em">${f.note}</span>`:''}
-    ${f.website?`<br><a href="${f.website}" target="_blank">strona</a>`:`<br><a href="https://duckduckgo.com/?q=${encodeURIComponent(f.name+' '+f.city+' 2026')}" target="_blank">szukaj w sieci</a>`}`);
+    ${f.website?`<br><a href="${f.website}" target="_blank">strona</a>`:`<br><a href="https://duckduckgo.com/?q=${encodeURIComponent(f.name+' '+f.city+' 2026')}" target="_blank">szukaj w sieci</a>`}
+    <br><a href="#" onclick="goList(${i});return false">📋 pokaż na liście</a>`);
   m.on('click',()=>highlight(i,false));
   markers[i]=m;
 });
@@ -237,7 +288,7 @@ function render(){
     <div class="card ${past?'past':''}" data-i="${i}" style="--cat:${col}">
       <div class="top">
         <span class="name">${f.name} ${badge(f)}</span>
-        <span class="city">${f.city}</span>
+        <span class="city">📍 ${f.city}</span>
       </div>
       <div class="when">📅 <b>${fmtRange(f.start,f.end)}</b></div>
       <div class="chips">
@@ -253,7 +304,10 @@ function render(){
     </div>`;}).join('')
     : '<div id="empty">Brak festiwali w tym zakresie.<br>Poszerz daty albo wyczyść filtry.</div>';
 
-  document.querySelectorAll('.card').forEach(c=>c.addEventListener('click',()=>highlight(+c.dataset.i)));
+  document.querySelectorAll('.card').forEach(c=>c.addEventListener('click',()=>{
+    highlight(+c.dataset.i);
+    if(isMobile()) setView('map');  // dotknięcie festiwalu na liście -> mapa z pinezką
+  }));
 
   const free=items.filter(({f})=>f.free===true).length;
   const est=items.filter(({f})=>f.estimated).length;
@@ -266,8 +320,14 @@ function render(){
   document.querySelectorAll('.preset').forEach(b=>b.classList.remove('on'));
   render();
 }));
+// pisanie w szukajce -> od razu wyniki na liście; preset -> też prosto do listy
+searchEl.addEventListener('input',()=>{if(isMobile()) setView('list');});
+document.querySelectorAll('.preset').forEach(b=>b.addEventListener('click',()=>{
+  if(isMobile()&&document.body.classList.contains('filters-open')) setView('list');
+}));
 
 if(typeof FESTIWALE_UPDATED!=='undefined') el('updated').textContent=`Dane zebrane ${FESTIWALE_UPDATED}`;
+setView('list');  // mobile: start od listy (na desktopie klasy view-* są ignorowane)
 const [a,z]=PRESETS.year(); setRange(a,z,'year');   // domyślnie: cały rok
 </script>
 </body>
