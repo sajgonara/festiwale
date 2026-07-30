@@ -57,6 +57,7 @@ select:focus,input:focus{border-color:var(--accent)}
 .card .links a:hover{text-decoration:underline}
 .past{opacity:.45}
 .badge{font-size:.63rem;border:1px solid var(--border);border-radius:4px;padding:1px 4px;color:var(--muted);vertical-align:middle}
+.badge.est{border-color:#4a3a5e;color:#b79ad4}
 #stats{padding:6px 14px;font-size:.75rem;color:var(--muted);border-bottom:1px solid var(--border)}
 #empty{padding:24px 12px;text-align:center;color:var(--muted);font-size:.85rem}
 .leaflet-popup-content-wrapper,.leaflet-popup-tip{background:var(--panel2);color:var(--text)}
@@ -99,11 +100,12 @@ footer a{color:var(--accent)}
     <span class="lbl">–</span>
     <input type="date" id="to">
     <div class="presets">
-      <button class="preset" data-p="year">Cały rok</button>
-      <button class="preset" data-p="upcoming">Od dziś</button>
+      <button class="preset" data-p="year">Najbliższy rok</button>
+      <button class="preset" data-p="halfyear">Pół roku</button>
       <button class="preset" data-p="month">Najbliższy miesiąc</button>
       <button class="preset" data-p="weekend">Ten weekend</button>
-      <button class="preset" data-p="summer">Lato</button>
+      <button class="preset" data-p="summer">Najbliższe lato</button>
+      <button class="preset" data-p="all">Wszystko</button>
     </div>
     <label class="toggle"><input type="checkbox" id="freeOnly"> tylko darmowe</label>
   </div>
@@ -119,8 +121,9 @@ footer a{color:var(--accent)}
 <script>
 const CAT_LABEL={muzyka:'🎵 muzyka',film:'🎬 film',folk:'🪗 folk',historia:'🛡️ historia',teatr:'🎭 teatr',jarmark:'🏪 jarmark',jedzenie:'🍲 jedzenie',literatura:'📚 literatura',inne:'✨ inne'};
 const CAT_COLOR={muzyka:'#f2a65a',film:'#7aa2f7',folk:'#c98bdb',historia:'#d0805c',teatr:'#e6667a',jarmark:'#5fbf77',jedzenie:'#e0c341',literatura:'#6fc7c2',inne:'#8b93a3'};
-const YEAR = 2026;
 const TODAY = new Date().toISOString().slice(0,10);
+const DATA_MIN = FESTIWALE.reduce((m,f)=>f.start<m?f.start:m, FESTIWALE[0].start);
+const DATA_MAX = FESTIWALE.reduce((m,f)=>f.end>m?f.end:m, FESTIWALE[0].end);
 
 const map = L.map('map').setView([52.1, 19.4], 6);
 L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
@@ -142,6 +145,8 @@ function fmtRange(s,e){
 }
 const daysBetween=(a,b)=>Math.round((new Date(b)-new Date(a))/864e5);
 const priceVal=f=> f.free ? 0 : (f.priceMin ?? f.pricePass ?? Infinity);
+const badge=f=> f.estimated ? '<span class="badge est" title="edycja przyszłoroczna — termin oszacowany na podstawie poprzedniej edycji">≈ szacunek</span>'
+              : (f.verified ? '' : '<span class="badge" title="termin orientacyjny — potwierdź u organizatora">~termin</span>');
 const fmtPrice=v=> v==null?null:(v===0?'0 zł':String(v).replace('.',',')+' zł');
 
 // filtry: kategorie + miasta
@@ -158,7 +163,7 @@ FESTIWALE.forEach((f,i)=>{
   const col=CAT_COLOR[f.category]||'#8b93a3';
   const m=L.circleMarker([f.lat,f.lng],{radius:7,color:col,weight:1.5,fillColor:col,fillOpacity:.55});
   m.bindPopup(`<b>${f.name}</b><br>${f.city} · ${CAT_LABEL[f.category]||f.category}<br>
-    📅 <b>${fmtRange(f.start,f.end)}</b>${f.verified?'':' <span class="badge">~termin</span>'}
+    📅 <b>${fmtRange(f.start,f.end)}</b> ${badge(f)}
     ${f.free?'<br>🎟️ <b style="color:#5fbf77">wstęp wolny</b>':(f.priceMin!=null||f.pricePass!=null?`<br>🎟️ od <b>${fmtPrice(f.priceMin??f.pricePass)}</b>`:'')}
     ${f.priceNote?`<br><i style="font-size:.9em">${f.priceNote}</i>`:''}
     ${f.note?`<br><span style="color:#9aa5b4;font-size:.9em">${f.note}</span>`:''}
@@ -182,12 +187,18 @@ function setRange(from,to,preset){
   document.querySelectorAll('.preset').forEach(b=>b.classList.toggle('on',b.dataset.p===preset));
   render();
 }
+const plusDays=n=>{const d=new Date();d.setDate(d.getDate()+n);return iso(d);};
 const PRESETS={
-  year:()=>[`${YEAR}-01-01`,`${YEAR}-12-31`],
-  upcoming:()=>[TODAY,`${YEAR}-12-31`],
-  month:()=>{const d=new Date();const e=new Date(d);e.setMonth(e.getMonth()+1);return [iso(d),iso(e)];},
+  year:()=>[TODAY,plusDays(365)],                 // domyślne: 365 dni od dziś
+  halfyear:()=>[TODAY,plusDays(182)],
+  month:()=>[TODAY,plusDays(30)],
   weekend:()=>{const d=new Date();const dow=d.getDay();const fri=new Date(d);fri.setDate(d.getDate()+((5-dow)+7)%7);const sun=new Date(fri);sun.setDate(fri.getDate()+2);return [iso(fri),iso(sun)];},
-  summer:()=>[`${YEAR}-06-21`,`${YEAR}-09-22`]
+  summer:()=>{                                     // najbliższe lato: to bieżące, jeśli jeszcze trwa, inaczej przyszłoroczne
+    const y=new Date().getFullYear();
+    const yy = TODAY <= `${y}-09-22` ? y : y+1;
+    return [ TODAY > `${yy}-06-21` ? TODAY : `${yy}-06-21`, `${yy}-09-22` ];
+  },
+  all:()=>[DATA_MIN,DATA_MAX]
 };
 document.querySelectorAll('.preset').forEach(b=>b.addEventListener('click',()=>{
   const [a,z]=PRESETS[b.dataset.p](); setRange(a,z,b.dataset.p);
@@ -195,7 +206,7 @@ document.querySelectorAll('.preset').forEach(b=>b.addEventListener('click',()=>{
 
 function render(){
   const q=searchEl.value.trim().toLowerCase();
-  const from=fromEl.value||`${YEAR}-01-01`, to=toEl.value||`${YEAR}-12-31`;
+  const from=fromEl.value||DATA_MIN, to=toEl.value||DATA_MAX;
   const cat=catEl.value, city=cityEl.value, onlyFree=freeEl.checked, sort=sortEl.value;
 
   let items=FESTIWALE.map((f,i)=>({f,i}))
@@ -225,7 +236,7 @@ function render(){
     return `
     <div class="card ${past?'past':''}" data-i="${i}" style="--cat:${col}">
       <div class="top">
-        <span class="name">${f.name} ${f.verified?'':'<span class="badge" title="termin orientacyjny — potwierdź u organizatora">~termin</span>'}</span>
+        <span class="name">${f.name} ${badge(f)}</span>
         <span class="city">${f.city}</span>
       </div>
       <div class="when">📅 <b>${fmtRange(f.start,f.end)}</b></div>
@@ -245,8 +256,10 @@ function render(){
   document.querySelectorAll('.card').forEach(c=>c.addEventListener('click',()=>highlight(+c.dataset.i)));
 
   const free=items.filter(({f})=>f.free===true).length;
-  const upcoming=items.filter(({f})=>f.end>=TODAY).length;
-  statsEl.textContent=`${items.length} festiwali · ${upcoming} jeszcze przed nami · ${free} z wolnym wstępem`;
+  const est=items.filter(({f})=>f.estimated).length;
+  const days=Math.max(0,daysBetween(from,to));
+  statsEl.textContent=`${items.length} festiwali w oknie ${days} dni · ${free} z wolnym wstępem`
+    + (est?` · ${est} to oszacowane edycje przyszłoroczne`:'');
 }
 
 [searchEl,catEl,cityEl,sortEl,freeEl,fromEl,toEl].forEach(e=>e.addEventListener(e.tagName==='INPUT'&&e.type==='text'?'input':'change',()=>{

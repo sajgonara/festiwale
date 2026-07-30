@@ -4,14 +4,19 @@ Mapa + kalendarz festiwali w Polsce z filtrem zakresu dat (domyślnie cały rok)
 wydarzeń z wolnym wstępem. Statyczna strona: Leaflet + CARTO dark, vanilla JS, zero zależności poza mapą.
 
 ## Funkcje
-- Zakres dat od–do, domyślnie cały 2026; presety: cały rok / od dziś / najbliższy miesiąc / ten weekend / lato
+- Zakres dat od–do, **domyślnie 365 dni od dziś** (okno przesuwne, nie rok kalendarzowy);
+  presety: najbliższy rok / pół roku / najbliższy miesiąc / ten weekend / najbliższe lato / wszystko
 - Filtry: kategoria (muzyka, film, folk, historia, teatr, jarmark, jedzenie, literatura, inne), miasto, „tylko darmowe"
 - Sortowanie: chronologicznie, najtańsze najpierw, miasto, nazwa
 - Mapa pokazuje wyłącznie przefiltrowane wydarzenia; kolor markera = kategoria
 - Znaczniki „trwa teraz" / „za N dni"; wydarzenia, które już minęły, są wygaszone
 
 ## Dane
-`data.js` — 78 festiwali, 40 miejscowości (stan 2026-07-30).
+`data.js` — 121 pozycji, 40 miejscowości (stan 2026-07-30): 78 edycji 2026 + 43 oszacowane edycje 2027.
+
+Okno „365 dni od dziś" sięga poza koniec 2026, więc dla festiwali z pierwszej połowy roku
+dopisane są edycje przyszłoroczne: data przesunięta o **+364 dni** (ten sam dzień tygodnia).
+Mają `estimated: true` i w UI badge `≈ szacunek` — po ogłoszeniu prawdziwych terminów należy je podmienić.
 
 Pola: `start`/`end` (ISO), `category`, `free`, `priceMin`, `pricePass`, `priceNote`, `lat`/`lng`, `verified`, `note`.
 

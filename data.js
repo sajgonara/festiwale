@@ -324,6 +324,183 @@ const FESTIWALE = [
   { name:"Festiwal Górski", city:"Lądek-Zdrój", lat:50.3450, lng:16.8800, start:"2026-09-17", end:"2026-09-20",
     category:"inne", free:false, priceMin:null, pricePass:null, priceNote:null,
     website:null, verified:false, note:"Filmy i spotkania górskie; termin orientacyjny" }
+,
+
+  /* ===== EDYCJE 2027 (oszacowane: +364 dni od edycji 2026, ten sam dzień tygodnia) =====
+     Wygenerowane automatycznie, żeby domyślne okno "365 dni od dziś" nie urywało się na Sylwestrze.
+     Wszystkie mają estimated:true — w UI dostają badge ~termin. Po ogłoszeniu prawdziwych dat: podmień. */
+
+  { name:"SnowFest Festival", city:"Szczyrk", lat:49.718, lng:19.033, start:"2027-03-05", end:"2027-03-06",
+    category:"muzyka", free:false, priceMin:null, pricePass:null, priceNote:null,
+    website:null, verified:false, estimated:true, note:"Edycja 2027 — termin oszacowany jako ten sam tydzień co w 2026; potwierdź u organizatora. Elektronika i hip-hop w scenerii zimowej" },
+
+  { name:"Mystic Festival", city:"Gdańsk", lat:54.352, lng:18.6466, start:"2027-06-02", end:"2027-06-05",
+    category:"muzyka", free:false, priceMin:null, pricePass:null, priceNote:null,
+    website:null, verified:false, estimated:true, note:"Edycja 2027 — termin oszacowany jako ten sam tydzień co w 2026; potwierdź u organizatora. Metal i hardcore na terenie Stoczni Gdańskiej" },
+
+  { name:"TAURON Nowa Muzyka", city:"Katowice", lat:50.2649, lng:19.0238, start:"2027-06-03", end:"2027-06-06",
+    category:"muzyka", free:false, priceMin:null, pricePass:null, priceNote:null,
+    website:null, verified:false, estimated:true, note:"Edycja 2027 — termin oszacowany jako ten sam tydzień co w 2026; potwierdź u organizatora. Elektronika, jazz, ambient, eksperyment — Strefa Kultury" },
+
+  { name:"LAS Festival", city:"Lubawka", lat:50.697, lng:16, start:"2027-06-23", end:"2027-06-28",
+    category:"muzyka", free:false, priceMin:null, pricePass:null, priceNote:null,
+    website:null, verified:false, estimated:true, note:"Edycja 2027 — termin oszacowany jako ten sam tydzień co w 2026; potwierdź u organizatora. Elektronika, performance i sztuka w lesie" },
+
+  { name:"Open'er Festival", city:"Gdynia", lat:54.5189, lng:18.5305, start:"2027-06-30", end:"2027-07-03",
+    category:"muzyka", free:false, priceMin:null, pricePass:1149, priceNote:"Karnet 4-dniowy 1149 zł",
+    website:null, verified:false, estimated:true, note:"Edycja 2027 — termin oszacowany jako ten sam tydzień co w 2026; potwierdź u organizatora. Lotnisko Gdynia-Kosakowo; największy polski festiwal wielogatunkowy" },
+
+  { name:"Audioriver Festival", city:"Łódź", lat:51.7592, lng:19.456, start:"2027-07-09", end:"2027-07-11",
+    category:"muzyka", free:false, priceMin:null, pricePass:null, priceNote:null,
+    website:null, verified:false, estimated:true, note:"Edycja 2027 — termin oszacowany jako ten sam tydzień co w 2026; potwierdź u organizatora. Elektronika; po przeprowadzce z Płocka" },
+
+  { name:"Jarocin Festival", city:"Jarocin", lat:51.974, lng:17.506, start:"2027-07-15", end:"2027-07-18",
+    category:"muzyka", free:false, priceMin:199, pricePass:null, priceNote:"Bilety jednodniowe od 199 zł",
+    website:null, verified:false, estimated:true, note:"Edycja 2027 — termin oszacowany jako ten sam tydzień co w 2026; potwierdź u organizatora. Rock alternatywny i polski rock" },
+
+  { name:"Pol'and'Rock Festival", city:"Czaplinek", lat:53.556, lng:16.234, start:"2027-07-29", end:"2027-07-31",
+    category:"muzyka", free:true, priceMin:0, pricePass:0, priceNote:"Wstęp wolny",
+    website:null, verified:false, estimated:true, note:"Edycja 2027 — termin oszacowany jako ten sam tydzień co w 2026; potwierdź u organizatora. Największa darmowa impreza muzyczna w Polsce (d. Przystanek Woodstock)" },
+
+  { name:"Sunrise Festival", city:"Kołobrzeg", lat:54.1758, lng:15.583, start:"2027-07-30", end:"2027-08-01",
+    category:"muzyka", free:false, priceMin:null, pricePass:null, priceNote:null,
+    website:null, verified:false, estimated:true, note:"Edycja 2027 — termin oszacowany jako ten sam tydzień co w 2026; potwierdź u organizatora. Elektronika nad morzem" },
+
+  { name:"Slot Art Festival", city:"Lubiąż", lat:51.26, lng:16.42, start:"2027-07-06", end:"2027-07-10",
+    category:"muzyka", free:false, priceMin:null, pricePass:null, priceNote:"Tani karnet z warsztatami w cenie",
+    website:null, verified:false, estimated:true, note:"Edycja 2027 — termin oszacowany jako ten sam tydzień co w 2026; potwierdź u organizatora. Poklasztorny kompleks w Lubiążu; muzyka + kilkaset warsztatów" },
+
+  { name:"Jazz nad Odrą", city:"Wrocław", lat:51.1079, lng:17.0385, start:"2027-04-17", end:"2027-04-25",
+    category:"muzyka", free:false, priceMin:null, pricePass:null, priceNote:"Część wydarzeń w klubach bezpłatna",
+    website:null, verified:false, estimated:true, note:"Edycja 2027 — termin oszacowany jako ten sam tydzień co w 2026; potwierdź u organizatora. Jeden z najstarszych festiwali jazzowych w Europie; termin orientacyjny" },
+
+  { name:"MFF ZOOM–ZBLIŻENIA", city:"Jelenia Góra", lat:50.9044, lng:15.7194, start:"2027-03-01", end:"2027-03-07",
+    category:"film", free:false, priceMin:null, pricePass:null, priceNote:null,
+    website:null, verified:false, estimated:true, note:"Edycja 2027 — termin oszacowany jako ten sam tydzień co w 2026; potwierdź u organizatora. Kino niezależne, dokument, animacja" },
+
+  { name:"Let's Doc", city:"Warszawa", lat:52.2297, lng:21.0122, start:"2027-03-20", end:"2027-03-27",
+    category:"film", free:false, priceMin:null, pricePass:null, priceNote:null,
+    website:null, verified:false, estimated:true, note:"Edycja 2027 — termin oszacowany jako ten sam tydzień co w 2026; potwierdź u organizatora. Film dokumentalny i edukacja filmowa" },
+
+  { name:"Timeless Film Festival Warsaw", city:"Warszawa", lat:52.2297, lng:21.0122, start:"2027-04-16", end:"2027-04-26",
+    category:"film", free:false, priceMin:null, pricePass:null, priceNote:null,
+    website:null, verified:false, estimated:true, note:"Edycja 2027 — termin oszacowany jako ten sam tydzień co w 2026; potwierdź u organizatora. Klasyka kina, retrospektywy, spotkania autorskie" },
+
+  { name:"Millennium Docs Against Gravity", city:"Warszawa", lat:52.2297, lng:21.0122, start:"2027-05-07", end:"2027-05-16",
+    category:"film", free:false, priceMin:null, pricePass:null, priceNote:"Wersja online 19.05–01.06",
+    website:null, verified:false, estimated:true, note:"Edycja 2027 — termin oszacowany jako ten sam tydzień co w 2026; potwierdź u organizatora. Równolegle: Wrocław, Gdynia, Poznań, Katowice, Łódź, Bydgoszcz" },
+
+  { name:"Krakowski Festiwal Filmowy", city:"Kraków", lat:50.0647, lng:19.945, start:"2027-05-30", end:"2027-06-06",
+    category:"film", free:false, priceMin:null, pricePass:null, priceNote:null,
+    website:null, verified:false, estimated:true, note:"Edycja 2027 — termin oszacowany jako ten sam tydzień co w 2026; potwierdź u organizatora. Dokument, animacja, film krótkometrażowy" },
+
+  { name:"TAURON Nowe Horyzonty", city:"Wrocław", lat:51.1079, lng:17.0385, start:"2027-07-22", end:"2027-08-01",
+    category:"film", free:false, priceMin:null, pricePass:null, priceNote:"Część online do 09.08",
+    website:"https://www.nowehoryzonty.pl/", verified:false, estimated:true, note:"Edycja 2027 — termin oszacowany jako ten sam tydzień co w 2026; potwierdź u organizatora. Kino artystyczne i eksperymentalne" },
+
+  { name:"Mastercard OFF CAMERA", city:"Kraków", lat:50.0647, lng:19.945, start:"2027-04-23", end:"2027-05-02",
+    category:"film", free:false, priceMin:null, pricePass:null, priceNote:null,
+    website:null, verified:false, estimated:true, note:"Edycja 2027 — termin oszacowany jako ten sam tydzień co w 2026; potwierdź u organizatora. Kino niezależne; termin orientacyjny" },
+
+  { name:"Lubuskie Lato Filmowe", city:"Łagów", lat:52.335, lng:15.3, start:"2027-06-19", end:"2027-06-26",
+    category:"film", free:false, priceMin:null, pricePass:null, priceNote:null,
+    website:null, verified:false, estimated:true, note:"Edycja 2027 — termin oszacowany jako ten sam tydzień co w 2026; potwierdź u organizatora. Najstarszy festiwal filmowy w Polsce; termin orientacyjny" },
+
+  { name:"Festiwal Wszystkie Mazurki Świata", city:"Warszawa", lat:52.2297, lng:21.0122, start:"2027-04-21", end:"2027-04-24",
+    category:"folk", free:false, priceMin:null, pricePass:null, priceNote:"Część potańcówek i warsztatów bezpłatna",
+    website:null, verified:false, estimated:true, note:"Edycja 2027 — termin oszacowany jako ten sam tydzień co w 2026; potwierdź u organizatora. Muzyka tradycyjna, potańcówki wiejskie" },
+
+  { name:"Festiwal Folkowy Polskiego Radia „Nowa Tradycja”", city:"Warszawa", lat:52.2297, lng:21.0122, start:"2027-05-20", end:"2027-05-23",
+    category:"folk", free:false, priceMin:null, pricePass:null, priceNote:null,
+    website:null, verified:false, estimated:true, note:"Edycja 2027 — termin oszacowany jako ten sam tydzień co w 2026; potwierdź u organizatora. Konkurs folkowy Polskiego Radia" },
+
+  { name:"Ogólnopolski Festiwal Kapel i Śpiewaków Ludowych", city:"Kazimierz Dolny", lat:51.322, lng:21.952, start:"2027-06-24", end:"2027-06-27",
+    category:"folk", free:true, priceMin:0, pricePass:0, priceNote:"Wstęp wolny",
+    website:null, verified:false, estimated:true, note:"Edycja 2027 — termin oszacowany jako ten sam tydzień co w 2026; potwierdź u organizatora. Jubileuszowa 60. edycja; kapele wiejskie z całej Polski" },
+
+  { name:"EtnoBaltica — Festiwal Twórczości Ludowej", city:"Swołowo", lat:54.4667, lng:17.0333, start:"2027-07-02", end:"2027-07-04",
+    category:"folk", free:false, priceMin:null, pricePass:null, priceNote:null,
+    website:null, verified:false, estimated:true, note:"Edycja 2027 — termin oszacowany jako ten sam tydzień co w 2026; potwierdź u organizatora. Warsztaty tańca, garncarstwa, EtnoWioska Dziecięca" },
+
+  { name:"Globaltica World Cultures Festival", city:"Gdynia", lat:54.49, lng:18.56, start:"2027-07-16", end:"2027-07-18",
+    category:"folk", free:false, priceMin:null, pricePass:null, priceNote:null,
+    website:null, verified:false, estimated:true, note:"Edycja 2027 — termin oszacowany jako ten sam tydzień co w 2026; potwierdź u organizatora. Muzyka świata, Park Kolibki w Gdyni Orłowie" },
+
+  { name:"Tydzień Kultury Beskidzkiej", city:"Wisła", lat:49.656, lng:18.86, start:"2027-07-24", end:"2027-08-01",
+    category:"folk", free:false, priceMin:null, pricePass:null, priceNote:"Wiele koncertów plenerowych bezpłatnych",
+    website:null, verified:false, estimated:true, note:"Edycja 2027 — termin oszacowany jako ten sam tydzień co w 2026; potwierdź u organizatora. Równolegle Szczyrk, Żywiec, Maków Podhalański; przełom lipca i sierpnia" },
+
+  { name:"Łemkowska Watra", city:"Zdynia", lat:49.517, lng:21.267, start:"2027-07-16", end:"2027-07-18",
+    category:"folk", free:false, priceMin:null, pricePass:null, priceNote:null,
+    website:null, verified:false, estimated:true, note:"Edycja 2027 — termin oszacowany jako ten sam tydzień co w 2026; potwierdź u organizatora. Kultura łemkowska; III/IV tydzień lipca" },
+
+  { name:"Święto Dzieci Gór", city:"Nowy Sącz", lat:49.621, lng:20.697, start:"2027-07-25", end:"2027-07-31",
+    category:"folk", free:false, priceMin:null, pricePass:null, priceNote:"Korowody i koncerty plenerowe bezpłatne",
+    website:null, verified:false, estimated:true, note:"Edycja 2027 — termin oszacowany jako ten sam tydzień co w 2026; potwierdź u organizatora. Dziecięce zespoły regionalne; ostatni tydzień lipca" },
+
+  { name:"Folkowisko — Festiwal Kultury Pogranicza", city:"Gorajec", lat:50.267, lng:23.15, start:"2027-07-09", end:"2027-07-11",
+    category:"folk", free:false, priceMin:null, pricePass:null, priceNote:"Tani karnet, klimat wiejskiego podwórka",
+    website:null, verified:false, estimated:true, note:"Edycja 2027 — termin oszacowany jako ten sam tydzień co w 2026; potwierdź u organizatora. Lipiec 2026 — termin orientacyjny" },
+
+  { name:"MF Piosenki i Kultury Romów", city:"Ciechocinek", lat:52.88, lng:18.79, start:"2027-07-16", end:"2027-07-18",
+    category:"folk", free:false, priceMin:null, pricePass:null, priceNote:null,
+    website:null, verified:false, estimated:true, note:"Edycja 2027 — termin oszacowany jako ten sam tydzień co w 2026; potwierdź u organizatora. Połowa lipca; termin orientacyjny" },
+
+  { name:"Dni Grunwaldu", city:"Grunwald", lat:53.487, lng:20.087, start:"2027-07-15", end:"2027-07-18",
+    category:"historia", free:false, priceMin:null, pricePass:null, priceNote:null,
+    website:null, verified:false, estimated:true, note:"Edycja 2027 — termin oszacowany jako ten sam tydzień co w 2026; potwierdź u organizatora. Inscenizacja bitwy pod Grunwaldem; termin orientacyjny (rocznica 15.07)" },
+
+  { name:"Oblężenie Malborka", city:"Malbork", lat:54.0359, lng:19.0266, start:"2027-07-23", end:"2027-07-25",
+    category:"historia", free:false, priceMin:null, pricePass:null, priceNote:null,
+    website:null, verified:false, estimated:true, note:"Edycja 2027 — termin oszacowany jako ten sam tydzień co w 2026; potwierdź u organizatora. Rekonstrukcja oblężenia zamku; termin orientacyjny" },
+
+  { name:"Malta Festival", city:"Poznań", lat:52.4064, lng:16.9252, start:"2027-06-18", end:"2027-06-27",
+    category:"teatr", free:false, priceMin:null, pricePass:null, priceNote:"Znaczna część programu plenerowego bezpłatna",
+    website:null, verified:false, estimated:true, note:"Edycja 2027 — termin oszacowany jako ten sam tydzień co w 2026; potwierdź u organizatora. Teatr, muzyka i sztuka w przestrzeni miasta; termin orientacyjny" },
+
+  { name:"FETA — MF Teatrów Plenerowych i Ulicznych", city:"Gdańsk", lat:54.352, lng:18.6466, start:"2027-07-08", end:"2027-07-11",
+    category:"teatr", free:true, priceMin:0, pricePass:0, priceNote:"Wstęp wolny",
+    website:null, verified:false, estimated:true, note:"Edycja 2027 — termin oszacowany jako ten sam tydzień co w 2026; potwierdź u organizatora. Teatr uliczny na Dolnym Mieście; termin orientacyjny" },
+
+  { name:"Carnaval Sztukmistrzów", city:"Lublin", lat:51.2465, lng:22.5684, start:"2027-07-22", end:"2027-07-25",
+    category:"teatr", free:true, priceMin:0, pricePass:0, priceNote:"Wstęp wolny",
+    website:null, verified:false, estimated:true, note:"Edycja 2027 — termin oszacowany jako ten sam tydzień co w 2026; potwierdź u organizatora. Nowy cyrk i sztuka uliczna; termin orientacyjny" },
+
+  { name:"Festiwal Kontakt", city:"Toruń", lat:53.0138, lng:18.5984, start:"2027-05-21", end:"2027-05-28",
+    category:"teatr", free:false, priceMin:null, pricePass:null, priceNote:null,
+    website:null, verified:false, estimated:true, note:"Edycja 2027 — termin oszacowany jako ten sam tydzień co w 2026; potwierdź u organizatora. Międzynarodowy festiwal teatralny; termin orientacyjny" },
+
+  { name:"Jarmark św. Dominika", city:"Gdańsk", lat:54.352, lng:18.6466, start:"2027-07-24", end:"2027-08-15",
+    category:"jarmark", free:true, priceMin:0, pricePass:0, priceNote:"Wstęp wolny",
+    website:null, verified:false, estimated:true, note:"Edycja 2027 — termin oszacowany jako ten sam tydzień co w 2026; potwierdź u organizatora. Trzy tygodnie handlu, koncertów i ulicznych scen; termin orientacyjny" },
+
+  { name:"Jarmark Świętojański", city:"Poznań", lat:52.4064, lng:16.9252, start:"2027-06-12", end:"2027-06-27",
+    category:"jarmark", free:true, priceMin:0, pricePass:0, priceNote:"Wstęp wolny",
+    website:null, verified:false, estimated:true, note:"Edycja 2027 — termin oszacowany jako ten sam tydzień co w 2026; potwierdź u organizatora. Stary Rynek; rękodzieło i jedzenie; termin orientacyjny" },
+
+  { name:"Wrocławski Festiwal Dobrego Piwa", city:"Wrocław", lat:51.1079, lng:17.0385, start:"2027-06-11", end:"2027-06-13",
+    category:"jedzenie", free:false, priceMin:null, pricePass:null, priceNote:"Bilet wstępu + osobno piwo",
+    website:null, verified:false, estimated:true, note:"Edycja 2027 — termin oszacowany jako ten sam tydzień co w 2026; potwierdź u organizatora. Największy festiwal piw rzemieślniczych w Polsce; termin orientacyjny" },
+
+  { name:"Big Book Festival", city:"Warszawa", lat:52.2297, lng:21.0122, start:"2027-06-18", end:"2027-06-20",
+    category:"literatura", free:false, priceMin:null, pricePass:null, priceNote:"Część spotkań bezpłatna",
+    website:null, verified:false, estimated:true, note:"Edycja 2027 — termin oszacowany jako ten sam tydzień co w 2026; potwierdź u organizatora. Termin orientacyjny" },
+
+  { name:"Góry Literatury", city:"Nowa Ruda", lat:50.58, lng:16.5, start:"2027-07-08", end:"2027-07-18",
+    category:"literatura", free:false, priceMin:null, pricePass:null, priceNote:"Wiele spotkań bezpłatnych",
+    website:null, verified:false, estimated:true, note:"Edycja 2027 — termin oszacowany jako ten sam tydzień co w 2026; potwierdź u organizatora. Festiwal Olgi Tokarczuk w Kotlinie Kłodzkiej; termin orientacyjny" },
+
+  { name:"Wianki nad Wisłą", city:"Kraków", lat:50.0647, lng:19.945, start:"2027-06-19", end:"2027-06-19",
+    category:"inne", free:true, priceMin:0, pricePass:0, priceNote:"Wstęp wolny",
+    website:null, verified:false, estimated:true, note:"Edycja 2027 — termin oszacowany jako ten sam tydzień co w 2026; potwierdź u organizatora. Noc Świętojańska nad Wisłą; termin orientacyjny" },
+
+  { name:"Pyrkon", city:"Poznań", lat:52.4064, lng:16.9252, start:"2027-05-14", end:"2027-05-16",
+    category:"inne", free:false, priceMin:null, pricePass:null, priceNote:null,
+    website:null, verified:false, estimated:true, note:"Edycja 2027 — termin oszacowany jako ten sam tydzień co w 2026; potwierdź u organizatora. Największy festiwal fantastyki w Polsce, MTP; termin orientacyjny" },
+
+  { name:"Juwenalia", city:"Wrocław", lat:51.1079, lng:17.0385, start:"2027-05-13", end:"2027-05-16",
+    category:"inne", free:false, priceMin:null, pricePass:null, priceNote:"Pochód i część koncertów bezpłatne",
+    website:null, verified:false, estimated:true, note:"Edycja 2027 — termin oszacowany jako ten sam tydzień co w 2026; potwierdź u organizatora. Termin orientacyjny" }
 
 ];
 const FESTIWALE_UPDATED = "2026-07-30";
