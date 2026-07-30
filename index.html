@@ -208,11 +208,28 @@ const fmtPrice=v=> v==null?null:(v===0?'0 zł':String(v).replace('.',',')+' zł'
   const o=document.createElement('option'); o.value=c; o.textContent=c; cityEl.appendChild(o);
 });
 
-// markery
+// markery — pinezki o identycznych współrzędnych (kilka festiwali w jednym
+// mieście, np. Poznań) rozsuwamy spiralnie, żeby każda była klikalna
+const spotGroups={};
+FESTIWALE.forEach(f=>{
+  if(f.lat==null||f.lng==null) return;
+  const k=f.lat.toFixed(4)+','+f.lng.toFixed(4);
+  spotGroups[k]=(spotGroups[k]||0)+1;
+});
+const spotCounter={};
 FESTIWALE.forEach((f,i)=>{
   if(f.lat==null||f.lng==null) return;
+  const k=f.lat.toFixed(4)+','+f.lng;
+  let la=f.lat, ln=f.lng;
+  if(spotGroups[k]>1){
+    const n=(spotCounter[k]=(spotCounter[k]||0)+1);
+    if(n>1){  // pierwsza zostaje w centrum, reszta na spirali (~0.7-2 km)
+      const ang=n*2.4, rad=0.006*Math.sqrt(n-1);
+      la=f.lat+rad*Math.cos(ang); ln=f.lng+rad*Math.sin(ang);
+    }
+  }
   const col=CAT_COLOR[f.category]||'#8b93a3';
-  const m=L.circleMarker([f.lat,f.lng],{radius:7,color:col,weight:1.5,fillColor:col,fillOpacity:.55});
+  const m=L.circleMarker([la,ln],{radius:7,color:col,weight:1.5,fillColor:col,fillOpacity:.55});
   m.bindPopup(`<b>${f.name}</b><br>${f.city} · ${CAT_LABEL[f.category]||f.category}<br>
     📅 <b>${fmtRange(f.start,f.end)}</b> ${badge(f)}
     ${f.free?'<br>🎟️ <b style="color:#5fbf77">wstęp wolny</b>':(f.priceMin!=null||f.pricePass!=null?`<br>🎟️ od <b>${fmtPrice(f.priceMin??f.pricePass)}</b>`:'')}
@@ -229,7 +246,7 @@ function highlight(i,pan=true){
   const card=document.querySelector(`.card[data-i="${i}"]`);
   if(card){card.classList.add('active');card.scrollIntoView({block:'nearest',behavior:'smooth'});}
   const f=FESTIWALE[i];
-  if(pan&&markers[i]){map.setView([f.lat,f.lng],11);markers[i].openPopup();}
+  if(pan&&markers[i]){map.setView(markers[i].getLatLng(),11);markers[i].openPopup();}
 }
 
 // zakres dat
